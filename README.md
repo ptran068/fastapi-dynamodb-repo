@@ -183,6 +183,5 @@ All API endpoints are prefixed with `/api/v1`.
 * **Advanced Analytics:** Integrate with a dedicated analytics platform (e.g., AWS Kinesis/S3/Athena, Elasticsearch) for complex queries on event attendance and user engagement that might be inefficient with direct DynamoDB queries.
 * **Email Templating:** Implement a proper email templating system (e.g., Jinja2) within the `EmailService` or leverage SendGrid's dynamic templates more fully.
 
-## 9. Testing
-
-(Details on how to run tests, what frameworks are used, etc.)
+My AWS DynamoTable
+![img.png](img.png)
