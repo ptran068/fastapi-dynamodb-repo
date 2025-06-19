@@ -1,0 +1,54 @@
+# Python
+# Byte-code files
+__pycache__/
+*.pyc
+*.pyd
+*.o
+*.so
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+/site/
+
+# Environment variables (sensitive information)
+.env
+.env.*
+*.env
+
+# IDE specific files
+.idea/                          # JetBrains IDEs (PyCharm, IntelliJ, etc.)
+.vscode/                        # VS Code (if you have local settings you don't want to share)
+*.sublime-project
+*.sublime-workspace
+.project
+.settings/
+.ds_store                       # macOS specific
+
+# LocalStack / Docker related
+.localstack/                    # LocalStack's internal data directory
+volumes/                        # If you mount Docker volumes locally
+# docker-compose.override.yml   # Uncomment if you use a local override file for Docker Compose
+# *.log                         # Uncomment if your logs are generated in the root and should be ignored
+
+# Database files (if you generate local SQLite or other DB files)
+*.db
+*.sqlite
+*.sqlite3
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+logs/
