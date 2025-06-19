@@ -171,17 +171,5 @@ All API endpoints are prefixed with `/api/v1`.
 * **Error Handling:** Uses FastAPI's `HTTPException` for consistent error responses.
 * **Unit and Integration Tests:** (To be implemented) A comprehensive test suite would ensure the reliability and correctness of the application.
 
-## 8. Future Enhancements
-
-* **Comprehensive Testing:** Implement extensive unit, integration, and end-to-end tests.
-* **Event Management:** Implement full CRUD for events and integrate with user event participation.
-* **Authentication & Authorization:** Add JWT-based authentication for user access control and role-based authorization.
-* **Background Tasks/Task Queue:** For high-volume email sending or other long-running operations, integrate a task queue (e.g., Celery with Redis/RabbitMQ, AWS SQS + Lambda) to offload tasks from the main API process.
-* **Logging & Monitoring:** Implement structured logging (e.g., using `loguru`) and integrate with a monitoring solution (e.g., Prometheus, Grafana, AWS CloudWatch).
-* **Dockerization:** Provide `Dockerfile` and `docker-compose.yml` for easy containerized deployment.
-* **CI/CD Pipeline:** Automate the build, test, and deployment process.
-* **Advanced Analytics:** Integrate with a dedicated analytics platform (e.g., AWS Kinesis/S3/Athena, Elasticsearch) for complex queries on event attendance and user engagement that might be inefficient with direct DynamoDB queries.
-* **Email Templating:** Implement a proper email templating system (e.g., Jinja2) within the `EmailService` or leverage SendGrid's dynamic templates more fully.
-
 My AWS DynamoTable
 ![img.png](img.png)
