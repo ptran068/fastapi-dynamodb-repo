@@ -48,22 +48,30 @@ class UserService:
         # Initialize the list to be filtered
         current_filtered_users = all_users_data
 
-        # Step 2: Apply in-memory email filter if provided
         if filters.email is not None:
-            # Perform case-insensitive comparison for email
             target_email_lower = filters.email.lower()
-            print(11,target_email_lower)
             current_filtered_users = [
                 user_data for user_data in current_filtered_users
                 if user_data.get('email', '').lower() == target_email_lower
             ]
 
-        # Step 3: Apply event count filters
-        # This logic iterates over the already email-filtered users
+        if filters.city is not None:
+            target_city_lower = filters.city.lower()
+            current_filtered_users = [
+                user_data for user_data in current_filtered_users
+                if user_data.get('city', '').lower() == target_city_lower
+            ]
+
+        if filters.company is not None:
+            company = filters.company.lower()
+            current_filtered_users = [
+                user_data for user_data in current_filtered_users
+                if user_data.get('company', '').lower() == company
+            ]
+
         final_filtered_users = []
         for user_data in current_filtered_users: # Iterate over the potentially pre-filtered list
             user_id = user_data.get('id')
-            # These are separate DynamoDB queries for each user - be mindful of N+1 problem
             hosted_events = await self.user_event_repo.get_events_for_user(user_id, role="host")
             attended_events = await self.user_event_repo.get_events_for_user(user_id, role="participant")
 

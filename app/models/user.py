@@ -12,7 +12,7 @@ class User(BaseModel):
     avatar: Optional[str] = None
     gender: Optional[str] = None
     jobTitle: Optional[str] = None
-    company: Optional[str] = None
+    company: Optional[str] = None # should be company ID
     city: Optional[str] = None
     state: Optional[str] = None
     createdAt: str = Field(default_factory=lambda: datetime.utcnow().isoformat())

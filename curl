@@ -17,7 +17,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/users/' \
 
 2. Filter users
 
-curl --location 'http://127.0.0.1:8000/api/v1/users/?email=ptran06812%40gmail.com' \
+curl --location 'http://127.0.0.1:8000/api/v1/users/?email=ptran06812%40gmail.com&city=DN%20City' \
 --header 'accept: application/json'
 
 curl --location 'http://127.0.0.1:8000/api/v1/users/?max_events_attended=1' \
@@ -47,28 +47,26 @@ curl --location 'http://127.0.0.1:8000/api/v1/events/' \
 5. Send mail
 Scenario 1: Sending Emails to Explicit recipient_emails
 
-curl -X 'POST' \
-  'http://127.0.0.1:8000/api/v1/email/send-emails' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
+curl --location 'http://127.0.0.1:8000/api/v1/emails/send-emails' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
   "recipient_emails": [
-    "user1@example.com",
-    "user2@example.com",
+    "ptran068@gmail.com"
   ],
-  "subject": "Your Event Invitation!",
-  "template_name": "event_invitation",
+  "subject": "Important Announcement: System Maintenance",
+  "template_name": "maintenance_alert",
   "template_data": {
-    "event_title": "Grand Tech Conference",
-    "date": "July 25, 2025",
-    "location": "Convention Center",
-    "speaker": "Dr. Emily Green"
+    "maintenance_date": "June 20, 2025",
+    "start_time": "10:00 PM ICT",
+    "end_time": "1:00 AM ICT"
   }
 }'
 
-Scenario 2: Sending Emails to Users Based on filters
+Scenario 2: Sending Emails to Users Based on filters:
+
 curl -X 'POST' \
-  'http://127.0.0.1:8000/api/v1/email/send-emails' \
+  'http://127.0.0.1:8000/api/v1/emails/send-emails' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{

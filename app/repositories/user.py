@@ -117,10 +117,5 @@ class UserRepository(BaseRepository):
             return False
 
     async def query(self, **kwargs) -> List[Dict[str, Any]]:
-        """
-        This method performs a SCAN operation for general filtering purposes.
-        For specific indexed queries (e.g., by email, company), use dedicated methods.
-        """
-        # CRITICAL: This must be .scan() for the /users/ filtering endpoint to work
         response = self.table.scan()
         return response.get('Items', [])
