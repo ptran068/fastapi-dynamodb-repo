@@ -1,0 +1,84 @@
+1. Create user
+curl --location 'http://127.0.0.1:8000/api/v1/users/' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "firstName": "phong",
+  "lastName": "tran",
+  "phoneNumber": "123-456-7890",
+  "email": "ptran068122@gmail.com",
+  "avatar": "https://test",
+  "gender": "Male",
+  "jobTitle": "Software Engineer",
+  "company": "Tech Corp",
+  "city": "DN City",
+  "state": "DN"
+}'
+
+2. Filter users
+
+curl --location 'http://127.0.0.1:8000/api/v1/users/?email=ptran06812%40gmail.com' \
+--header 'accept: application/json'
+
+curl --location 'http://127.0.0.1:8000/api/v1/users/?max_events_attended=1' \
+--header 'accept: application/json'
+
+
+3. Create event
+curl --location 'http://127.0.0.1:8000/api/v1/events/' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/json' \
+--data '{
+  "slug": "test-event-1",
+  "title": "Test Event One",
+  "description": "A test event.",
+  "startAt": "2025-07-20T10:00:00Z",
+  "endAt": "2025-07-20T12:00:00Z",
+  "venue": "Online",
+  "maxCapacity": 50,
+  "ownerId": "235f2dc4-7ed1-4072-a3fe-a5fdab8437cc",
+  "hosts": ["235f2dc4-7ed1-4072-a3fe-a5fdab8437cc"]
+}'
+
+4. List event
+curl --location 'http://127.0.0.1:8000/api/v1/events/' \
+--header 'accept: application/json'
+
+5. Send mail
+Scenario 1: Sending Emails to Explicit recipient_emails
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/api/v1/email/send-emails' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "recipient_emails": [
+    "user1@example.com",
+    "user2@example.com",
+  ],
+  "subject": "Your Event Invitation!",
+  "template_name": "event_invitation",
+  "template_data": {
+    "event_title": "Grand Tech Conference",
+    "date": "July 25, 2025",
+    "location": "Convention Center",
+    "speaker": "Dr. Emily Green"
+  }
+}'
+
+Scenario 2: Sending Emails to Users Based on filters
+curl -X 'POST' \
+  'http://127.0.0.1:8000/api/v1/email/send-emails' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "filters": {
+    "email": "filter.user@example.com"
+  },
+  "subject": "Important Update!",
+  "template_name": "general_announcement",
+  "template_data": {
+    "message_heading": "Hello Valued User,",
+    "body_content": "We have an important update for you regarding our services."
+  }
+}'
